@@ -5,10 +5,15 @@ using System.Collections.Generic;
 public class MapMaster : MonoBehaviour
 {
     public Texture2D Map;
+    public GameObject MapMasterObj;
+
+    public GameObject Test;
+
     private MapNode[,] _mapNodes;
 
 	void Start () {
         this._mapNodes = new MapNode[50, 50];
+        ParseMap(Map);
 	}
 	
 	void Update () {
@@ -28,14 +33,13 @@ public class MapMaster : MonoBehaviour
             {
                 var pixel = map.GetPixel(x, y);
                 var node = new MapNode();
-                Texture2D tex = new Texture2D(1,1);
-                GameObject obj = new GameObject();
-                Rect rec = new Rect(Vector2.zero, Vector2.one);
+                GameObject obj = GameObject.Instantiate(Test);
 
-                tex.SetPixel(0, 0, pixel);
+                obj.transform.SetParent(MapMasterObj.transform);
                 obj.transform.position = new Vector3(x, y, 0);
-                obj.AddComponent<SpriteRenderer>();
-                obj.GetComponent<SpriteRenderer>().sprite = Sprite.Create(tex, rec, Vector2.zero);
+
+                obj.GetComponent<SpriteRenderer>().color = pixel;
+                obj.name = string.Format("({0}, {1}) Tile", x, y);
                 node.CreateRenderer(obj);
             }
         }

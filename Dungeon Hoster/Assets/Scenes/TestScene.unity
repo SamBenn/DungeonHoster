@@ -218,3 +218,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Map: {fileID: 2800000, guid: 7ed60eecd5721e44f9bef5b912ecbfee, type: 3}
+  MapMasterObj: {fileID: 906270066}
+  Test: {fileID: 1000012722237552, guid: 205f1f3bdaa63c34b951713c8481953a, type: 2}
